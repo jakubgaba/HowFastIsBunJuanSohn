@@ -1,0 +1,17 @@
+bun run index.js
+ulimit -n 100000
+ab -H "x-method: empty" -c 1000 -n 100000 "http://0.0.0.0:42069/"
+
+curl -X POST -H "content-type: application/json" -H "x-method: json" http://0.0.0.0:42069 -d '{"user":{"age"
+:30}}'^C
+
+
+
+
+
+go install github.com/six-ddc/plow@latest
+plow http://0.0.0.0:42069 -m POST -c 1000 -n 100000 --body @test/small.json -T "application/json" --no-clean -H "x-method: json"
+
+
+
+http://localhost:18888/
